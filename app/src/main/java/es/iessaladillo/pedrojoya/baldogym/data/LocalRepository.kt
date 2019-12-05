@@ -11,44 +11,16 @@ object LocalRepository : Repository {
 
     private var trainingSessions: MutableList<TrainingSession> = createWeekSchedule().toMutableList()
 
-    override fun queryMondayTrainingSessions(): List<TrainingSession> {
-        val mondayTrainingSessions: MutableList<TrainingSession> = mutableListOf()
+    override fun queryTrainingSessionsOfDay(weekDay: WeekDay): List<TrainingSession> {
+        val trainingSessionsOfDay: MutableList<TrainingSession> = mutableListOf()
         trainingSessions.forEach {
-            if (it.weekDay == MONDAY) {
-                mondayTrainingSessions.add(it)
+            if (it.weekDay == weekDay) {
+                trainingSessionsOfDay.add(it)
             }
         }
-        return mondayTrainingSessions.toList()
+        return trainingSessionsOfDay.toList()
     }
 
-    override fun queryTuesdayTrainingSessions(): List<TrainingSession> {
-        return emptyList()
-    }
-
-    override fun queryWednesdayTrainingSessions(): List<TrainingSession> {
-        return emptyList()
-
-    }
-
-    override fun queryThursdayTrainingSessions(): List<TrainingSession> {
-        return emptyList()
-
-    }
-
-    override fun queryFridayTrainingSessions(): List<TrainingSession> {
-        return emptyList()
-
-    }
-
-    override fun querySaturdayTrainingSessions(): List<TrainingSession> {
-        return emptyList()
-
-    }
-
-    override fun querySundayTrainingSessions(): List<TrainingSession> {
-        return emptyList()
-
-    }
 
     override fun joinTrainingSession(trainingSessionId: Long) {
         trainingSessions.forEach {

@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.baldogym.ui.schedule
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ class ScheduleActivityAdapter: RecyclerView.Adapter<ScheduleActivityAdapter.View
 
     private var data: List<TrainingSession> = emptyList()
     var onItemClickListener: ((Int) -> Unit)? = null
+    var onItemButtonListener: ((Int) -> Unit)? = null
 
     init {
         setHasStableIds(true)
@@ -35,13 +35,21 @@ class ScheduleActivityAdapter: RecyclerView.Adapter<ScheduleActivityAdapter.View
 
     override fun getItemId(position: Int): Long = data[position].id
 
+    fun getItem(position: Int): TrainingSession = data[position]
+
+
+    fun submitList(trainingSessions: List<TrainingSession>) {
+        data = trainingSessions
+        notifyDataSetChanged()
+    }
+
 
     inner class ViewHolder(override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         init {
             containerView.setOnClickListener { onItemClickListener?.invoke(adapterPosition) }
-            btnJoinedSch.setOnClickListener { onItemClickListener?.invoke(adapterPosition) }
+            btnJoinedSch.setOnClickListener { onItemButtonListener?.invoke(adapterPosition) }
         }
 
         fun bind(trainingSession: TrainingSession) {
@@ -51,14 +59,16 @@ class ScheduleActivityAdapter: RecyclerView.Adapter<ScheduleActivityAdapter.View
                 containerView.lblNameSch.text = name
                 containerView.lblTrainerSch.text = trainer
                 containerView.lblRoomSch.text = room
+
                 if (participants == 1)
                     containerView.lblParticipantsSch.text = "%d participant".format(participants)
                 else
                     containerView.lblParticipantsSch.text = "%d participants".format(participants)
+
                 if (userJoined)
-                    containerView.btnJoinedSch.text = R.string.schedule_item_quit.toString()
+                    containerView.btnJoinedSch.setText(R.string.schedule_item_quit)
                 else
-                    containerView.btnJoinedSch.text = R.string.schedule_item_join.toString()
+                    containerView.btnJoinedSch.setText(R.string.schedule_item_join)
             }
         }
     }
