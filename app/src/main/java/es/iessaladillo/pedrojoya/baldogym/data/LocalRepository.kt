@@ -3,11 +3,69 @@ package es.iessaladillo.pedrojoya.baldogym.data
 import es.iessaladillo.pedrojoya.baldogym.R
 import es.iessaladillo.pedrojoya.baldogym.data.entity.TrainingSession
 import es.iessaladillo.pedrojoya.baldogym.data.entity.WeekDay
+import es.iessaladillo.pedrojoya.baldogym.data.entity.WeekDay.*
 import java.util.concurrent.ThreadLocalRandom
 
 object LocalRepository : Repository {
 
-    // TODO:
+
+    private var trainingSessions: MutableList<TrainingSession> = createWeekSchedule().toMutableList()
+
+    override fun queryMondayTrainingSessions(): List<TrainingSession> {
+        val mondayTrainingSessions: MutableList<TrainingSession> = mutableListOf()
+        trainingSessions.forEach {
+            if (it.weekDay == MONDAY) {
+                mondayTrainingSessions.add(it)
+            }
+        }
+        return mondayTrainingSessions.toList()
+    }
+
+    override fun queryTuesdayTrainingSessions(): List<TrainingSession> {
+        return emptyList()
+    }
+
+    override fun queryWednesdayTrainingSessions(): List<TrainingSession> {
+        return emptyList()
+
+    }
+
+    override fun queryThursdayTrainingSessions(): List<TrainingSession> {
+        return emptyList()
+
+    }
+
+    override fun queryFridayTrainingSessions(): List<TrainingSession> {
+        return emptyList()
+
+    }
+
+    override fun querySaturdayTrainingSessions(): List<TrainingSession> {
+        return emptyList()
+
+    }
+
+    override fun querySundayTrainingSessions(): List<TrainingSession> {
+        return emptyList()
+
+    }
+
+    override fun joinTrainingSession(trainingSessionId: Long) {
+        trainingSessions.forEach {
+            if (trainingSessionId == it.id) {
+                it.userJoined = true
+            }
+        }
+    }
+
+    override fun leftTrainingSession(trainingSessionId: Long) {
+        trainingSessions.forEach {
+            if (trainingSessionId == it.id) {
+                it.userJoined = false
+            }
+        }
+    }
+
 
     private fun createWeekSchedule(): List<TrainingSession> {
 
@@ -50,7 +108,7 @@ object LocalRepository : Repository {
         var trainingSessionId: Long = 0
 
         val trainingSessions: MutableList<TrainingSession> = mutableListOf()
-        WeekDay.values().forEach { weekDay ->
+        values().forEach { weekDay ->
             val shuffledBodySessionTypes = bodyRoomSessionTypes.shuffled()
             times.forEachIndexed { index, time ->
                 val sessionType = shuffledBodySessionTypes[index]

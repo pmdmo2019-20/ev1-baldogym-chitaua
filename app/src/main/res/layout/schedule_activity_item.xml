@@ -6,8 +6,78 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/schedule_item_padding"
+    android:animateLayoutChanges="true"
     tools:context=".ui.schedule.ScheduleActivity">
 
-    <!-- TODO -->
 
+    <TextView
+        android:id="@+id/lblTimeSch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="18:00 - 19:00" />
+
+    <ImageView
+        android:id="@+id/imgSch"
+        android:layout_width="80dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/lblTimeSch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTimeSch"
+        app:srcCompat="@drawable/bodyattack"
+        android:contentDescription="@string/schedule_item_imgPhoto" />
+
+    <TextView
+        android:id="@+id/lblNameSch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgSch"
+        app:layout_constraintTop_toTopOf="@+id/imgSch"
+        tools:text="Body attack" />
+
+    <TextView
+        android:id="@+id/lblTrainerSch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/imgSch"
+        app:layout_constraintTop_toBottomOf="@+id/lblNameSch"
+        tools:text="Entrenador 1" />
+
+    <TextView
+        android:id="@+id/lblRoomSch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/imgSch"
+        app:layout_constraintTop_toBottomOf="@+id/lblTrainerSch"
+        tools:text="Body Room" />
+
+    <Button
+        android:id="@+id/btnJoinedSch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTimeSch"
+        android:text="@string/schedule_item_join"
+        tools:text="@string/schedule_item_join" />
+
+    <TextView
+        android:id="@+id/lblParticipantsSch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/btnJoinedSch"
+        app:layout_constraintTop_toBottomOf="@+id/btnJoinedSch"
+        tools:text="%d participant" />
 </androidx.constraintlayout.widget.ConstraintLayout>

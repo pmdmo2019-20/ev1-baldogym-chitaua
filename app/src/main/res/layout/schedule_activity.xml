@@ -7,6 +7,113 @@
     android:layout_height="match_parent"
     tools:context=".ui.schedule.ScheduleActivity">
 
-    <!-- TODO -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lblMonSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_mon"
+            app:layout_constraintEnd_toStartOf="@+id/lblTueSch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblTueSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_tue"
+            app:layout_constraintEnd_toStartOf="@+id/lblWedSch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblMonSch"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblWedSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_wed"
+            app:layout_constraintEnd_toStartOf="@+id/lblThuSch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblTueSch"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblThuSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_thu"
+            app:layout_constraintEnd_toStartOf="@+id/lblFriSch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblWedSch"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblFriSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_fri"
+            app:layout_constraintEnd_toStartOf="@+id/lblSatSch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblThuSch"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblSatSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_sat"
+            app:layout_constraintEnd_toStartOf="@+id/lblSunSch"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblFriSch"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblSunSch"
+            style="@style/weekbar_element"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/schedule_sun"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblSatSch"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/lblCurrDaySch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/schedule_item_padding"
+        android:paddingVertical="@dimen/schedule_daybar_verticalPadding"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weekBar"
+        tools:targetApi="o"
+        tools:text="@string/schedule_wednesday" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lsTrainingSessions"
+        android:layout_width="409dp"
+        android:layout_height="627dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblCurrDaySch"
+        tools:listitem="@layout/schedule_activity_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
